@@ -1,0 +1,15 @@
+{% extends 'CVB/cvb_base.html' %}
+{% block start_block %}
+	<h1>
+		{% if not form.instance.pk %}
+			Add New Stduent
+		{% else %}
+			Update Student
+		{% endif %}
+	</h1>
+	<form class="form" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
+{% endblock %}

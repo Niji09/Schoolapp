@@ -1,0 +1,15 @@
+{% extends 'CVB/cvb_base.html' %}
+
+{% block start_block %}
+	<h1>List Of Schools</h1>
+	<ol>
+		{% for school in schools %}
+		<h4><li><a href="{% url 'CVB:detail' pk=school.pk %}">{{school.name}}</a></li></h4>
+		{% endfor %}
+	</ol>
+
+	<div>
+		<a href="{% url 'CVB:create' %}" class="btn btn-primary">Create New School</a>
+	</div>
+
+{% endblock %}

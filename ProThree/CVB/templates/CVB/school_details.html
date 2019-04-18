@@ -1,0 +1,58 @@
+{% extends 'CVB/cvb_base.html' %}
+
+{% block start_block %}
+	<h1>Welcome To School Details Page :</h1>
+	<h2>School Details</h2>
+	<div class="row">
+		<div class='col-lg-4 col-md-4'>
+			<ul>
+				<li>Name : {{ school_detail.name}}</li>
+				<li>Principal : {{ school_detail.principal}}</li>
+				<li>Location : {{school_detail.location}}</li>
+			</ul>
+		</div>
+		<div class='col-lg-4 col-md-4'>
+			<p>
+				<a href="{% url 'CVB:update' pk=school_detail.pk %}" class="btn btn-warning">
+					Update
+				</a>
+				<a href="{% url 'CVB:delete' pk=school_detail.pk %}" class="btn btn-danger">
+					Delete
+				</a>
+				<a href="{% url 'CVB:add_student' pk=school_detail.pk %}" class="btn btn-primary">
+					Add New Student
+				</a>
+			</p>
+		</div>
+	</div>
+	
+	
+	<h3>Students :</h3>
+	{% if school_detail.students.all %}
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Action</th>
+			</thead>
+			{% for student in school_detail.students.all %}
+				<tbody>
+					<td>{{student.name}}</td>
+					<td>{{student.age}}</td>
+					<td>
+						<a href="{% url 'CVB:update_student' pk=student.pk %}" class="btn btn-warning btn-sm">
+							Update
+						</a>
+						<a href="{% url 'CVB:delete_student' pk=student.pk %}" class="btn btn-danger btn-sm">
+							Delete
+						</a>
+					</td>
+				</tbody>
+			{% endfor %}
+		</table>
+	{% else %}
+		<h5>No Student Enrolled Right Now!</h5>
+	{% endif %}
+	
+
+{% endblock %}

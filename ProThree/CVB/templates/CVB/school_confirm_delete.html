@@ -1,0 +1,11 @@
+{% extends 'CVB/cvb_base.html' %}
+
+{% block start_block %}
+	<h1>Delete {{ school.name }}?</h1>
+	<h6>Warning: Deleting this will permanntly remove the {{school.name}} form records!</h6>
+	<form method="POST" class="form">
+		{% csrf_token %}
+		<input type="submit" class="btn btn-danger" value="Delete">
+		<a href="{% url 'CVB:detail' pk=school.pk %}" class="btn">Cancel</a>
+	</form>
+{% endblock %}
